@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: bztradwave-api
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn main:app"
+    rootDir: src
+    envVars:
+      - key: SECRET_KEY
+        value: X7$kPq9#mW2jL8@vN3
+      - key: DATABASE_URL
+        value: postgresql://postgres:@N128f1512@db.trwaztxaoovfrarwmykm.supabase.co:5432/postgres
+
