@@ -13,7 +13,6 @@ from src.routes.admin import admin_bp
 from src.routes.partner import partner_bp
 from src.routes.public import public_bp
 from src.routes.ai_insights import ai_insights_bp
-from src.routes.ai_insights_gemini import ai_insights_gemini_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 
@@ -32,7 +31,6 @@ app.register_blueprint(auth_bp, url_prefix='/api/auth')
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
 app.register_blueprint(partner_bp, url_prefix='/api/partner')
 app.register_blueprint(ai_insights_bp, url_prefix='/api/ai')
-app.register_blueprint(ai_insights_gemini_bp, url_prefix='/api/gemini')
 app.register_blueprint(public_bp, url_prefix='/api/public')
 
 # Initialize database
