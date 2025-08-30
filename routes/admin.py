@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from src.models.partner import db, Partner, Admin, Message, Document, MarketInsight, PartnerStatus
-from src.routes.auth import token_required, admin_required
+from models.partner import db, Partner, Admin, Message, Document, MarketInsight, PartnerStatus
+from routes.auth import token_required, admin_required
 from datetime import datetime
 from sqlalchemy import func, desc
 

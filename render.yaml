@@ -1,13 +1,15 @@
 services:
   - type: web
-    name: bztradwave-api
+    name: bztradewave-backend
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn main:app"
-    rootDir: src
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT main:app"
+    plan: free
     envVars:
       - key: SECRET_KEY
         value: X7$kPq9#mW2jL8@vN3
       - key: DATABASE_URL
         value: postgresql://postgres:@N128f1512@db.trwaztxaoovfrarwmykm.supabase.co:5432/postgres
+      - key: FLASK_ENV
+        value: production
 

@@ -1,18 +1,23 @@
 import os
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 # DON'T CHANGE THIS !!!
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
 from flask_cors import CORS
-from src.models.partner import db
-from src.models.user import User
-from src.routes.user import user_bp
-from src.routes.auth import auth_bp
-from src.routes.admin import admin_bp
-from src.routes.partner import partner_bp
-from src.routes.public import public_bp
-from src.routes.ai_insights import ai_insights_bp
+from models.partner import db
+from models.user import User
+from routes.user import user_bp
+from routes.auth import auth_bp
+from routes.admin import admin_bp
+from routes.partner import partner_bp
+from routes.public import public_bp
+from routes.ai_insights import ai_insights_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 
@@ -40,7 +45,7 @@ with app.app_context():
     db.create_all()
     
     # Create default admin user if it doesn't exist
-    from src.models.partner import Admin
+    from models.partner import Admin
     admin = Admin.query.filter_by(username='admin').first()
     if not admin:
         admin = Admin(
@@ -74,4 +79,6 @@ def health_check():
     return {'status': 'healthy', 'message': 'bzTradewave API is running'}, 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') != 'production'
+    app.run(host='0.0.0.0', port=port, debug=debug)

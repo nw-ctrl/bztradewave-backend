@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
-from src.models.partner import db, Partner, Admin, PartnerStatus
+from models.partner import db, Partner, Admin, PartnerStatus
 from datetime import datetime, timedelta
 import jwt
 from functools import wraps
